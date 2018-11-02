@@ -6,12 +6,14 @@ const jwt = require('jsonwebtoken');
 const keys = require('../../config/keys');
 const passport = require('passport');
 
+
 // Load Input Validatation
 const validateRegisterInput = require('../../validation/register');
 const validateLoginInput = require('../../validation/login');
 // Load User Model
 const User = require('../../models/User');
 
+const AfricasTalking = require('africastalking')(keys.AT);
 
 // @route   GET api/users/test
 // @desc    Test User route
@@ -23,6 +25,7 @@ router.get('/test', (req, res) => res.json({ msg: 'Users works' }));
 // @access  Public
 router.post('/register', (req, res) => {
   const { errors, isValid } = validateRegisterInput(req.body);
+  
   
   // check Validatation
   if (!isValid) {
@@ -46,8 +49,27 @@ router.post('/register', (req, res) => {
           name: req.body.name,
           email: req.body.email,
           password: req.body.password,
-          avatar
+          avatar,
+          phone: req.body.phone
         });
+
+        // Initialize a service e.g. SMS
+        sms = AfricasTalking.SMS
+
+        // Use the service
+        const SMSoptions = {
+          to: newUser.phone,
+          message: `Hi ${newUser.name}, Welcome to Follow the money`
+        };
+
+        // Send message and capture the response or error
+        sms.send(SMSoptions)
+          .then(response => {
+            console.log(response);
+          })
+          .catch(error => {
+            console.log(error);
+          });
 
         bcrypt.genSalt(10, (err, salt) => {
           bcrypt.hash(newUser.password, salt, (err, hash) => {
@@ -56,10 +78,10 @@ router.post('/register', (req, res) => {
             newUser.save()
               .then(user => res.json(user))
               .catch(err => console.log(err));
-          })
-        })
-      }
-    })
+          });
+        });
+      };
+    });
 });
 
 // @route   GET api/users/login
