@@ -39,15 +39,15 @@ class Register extends Component {
 
   render() {
     const { errors } = this.state;
-    const { user } = this.props.auth;
+    
     return (
       <div className="register">
         
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center">Sign Up {user ? user.name : null}</h1>
-              <p className="lead text-center">Create your DevConnector account</p>
+              
+              <p className="lead text-center">Create your Free account</p>
               <form noValidate onSubmit={this.onSubmit}>
                 <div className="form-group">
                   <input 

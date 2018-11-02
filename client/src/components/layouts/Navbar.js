@@ -20,22 +20,19 @@ class Navbar extends Component {
             </ul>
             <ul className="navbar-nav ml-auto">
               <li className="nav-item">
-                <Link className="nav-link" to="/register">HOME</Link>
+                <Link className="nav-link" to="/">HOME</Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/login">ABOUT US</Link>
+                <Link className="nav-link" to="/About">ABOUT US</Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/login">PROJECT</Link>
+                <Link className="nav-link" to="/projects">PROJECT</Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/login">SUPPORT US</Link>
+                <Link className="nav-link" to="/support">SUPPORT US</Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/login">JOIN US</Link>
-              </li>
-              <li>
-                <Link className="nav-item" to="/contact">Contact Us</Link>
+                <Link className="nav-link" to="/register">JOIN US</Link>
               </li>
             </ul>
           </div>
