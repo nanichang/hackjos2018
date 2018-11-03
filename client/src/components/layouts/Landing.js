@@ -1,23 +1,27 @@
 import React, { Component } from 'react';
-import { Link } from "react-router-dom";
+import Header from './Header';
+import Banner from './Banner';
+import Feature from './Feature';
+import HowItWork from './HowItWork';
+import Popular from './Popular';
+import Members from './Members';
+import WhyChoseUs from './WhyChoseUs';
+import Faq from './Faq';
+import Footer from './Footer';
 
 class Landing extends Component {
   render() {
     return (
-      <div className="landing">
-        <div className="dark-overlay landing-inner text-light">
-          <div className="container">
-            <div className="row">
-              <div className="col-md-12 text-center">
-                <h1 className="display-3 mb-4">FOLLOW THE MONEY</h1>
-                <p className="lead"> Create a developer profile/portfolio, share posts and get help from other developers</p>
-                <hr />
-                <Link to="/register" className="btn btn-lg btn-info mr-2">Sign Up</Link>
-                <Link to="/login" className="btn btn-lg btn-light">Login</Link>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div className="wrapper">
+        <Header />
+        <Banner />
+        <Feature />
+        <HowItWork />
+        <Popular />
+        <Members />
+        <WhyChoseUs />
+        <Faq />
+        <Footer />
       </div>
     );
   };

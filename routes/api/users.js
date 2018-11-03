@@ -57,25 +57,26 @@ router.post('/register', (req, res) => {
         sms = AfricasTalking.SMS
 
         // Use the service
-        const SMSoptions = {
+        const SMSOptions = {
           to: newUser.phone,
           message: `Hi ${newUser.name}, Welcome to Follow the money`
         };
 
         // Send message and capture the response or error
-        sms.send(SMSoptions)
-          .then(response => {
-            console.log(response);
-          })
-          .catch(error => {
-            console.log(error);
-          });
+        // sms.send(SMSOptions)
+        //   .then(response => {
+        //     console.log(response);
+        //   })
+        //   .catch(error => {
+        //     console.log(error);
+        //   });
 
         bcrypt.genSalt(10, (err, salt) => {
           bcrypt.hash(newUser.password, salt, (err, hash) => {
             if (err) throw err;
             newUser.password = hash;
             newUser.save()
+              .then(sms.send(SMSOptions))
               .then(user => res.json(user))
               .catch(err => console.log(err));
           });
