@@ -1,6 +1,6 @@
 module.exports = {
-  // mongoUri: 'mongodb://nani:password123@ds249992.mlab.com:49992/devconnect',
-  mongoUri: 'mongodb://localhost:27017/devconnector',
+  mongoUri: 'mongodb://hackjos:hack2018@ds249128.mlab.com:49128/hackjos',
+  // mongoUri: 'mongodb://localhost:27017/devconnector',
   secretOrKey: 'superSecretKey',
 
   AT: {

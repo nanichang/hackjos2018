@@ -19,10 +19,14 @@ router.get('/test', (req, res) => res.json({ msg: 'Posts works'}));
 // @access  Public
 
 router.get('/', (req, res) => {
-  Post.find()
-    .sort({date: -1})
-    .then(posts => res.json(posts))
-    .catch(err => res.status(404).json({ nopostsfound: 'No Posts found' }));
+  Post.find((err, data) => {
+    if (err) return res.json({ success: false, error: err });
+    return res.json({ success: true, data: data });
+  });
+  // Post.find()
+  //   // .sort({date: -1})
+  //   .then(posts => res.json(posts))
+  //   .catch(err => res.status(404).json({ nopostsfound: 'No Posts found' }));
 });
 
 // @route   GET api/posts/:id

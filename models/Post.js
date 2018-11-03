@@ -55,6 +55,12 @@ const PostSchema = new Schema({
   date: {
     type: Date,
     default: Date.now
+  },
+  url: {
+    type: String
+  },
+  posts: {
+    type: String
   }
 });
 
