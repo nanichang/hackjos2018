@@ -4,7 +4,7 @@ module.exports = {
   secretOrKey: 'superSecretKey',
 
   AT: {
-    apiKey: 'd544029340faedfea58de8e1430886769f0073be190f1e395e139a20dc7d1fdc',
+    apiKey: '1efa62275e02651b690e1c4f594d97387a921369ea3eaabb2518f7d79b8aa600',
     username: 'sandbox',
     format: 'json'
   },
