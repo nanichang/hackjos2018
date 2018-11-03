@@ -8,4 +8,6 @@ module.exports = {
     username: 'sandbox',
     format: 'json'
   },
+  DBURL: 'mongodb://hackjos:hack2018@ds249128.mlab.com:49128/hackjos',
+   
 };

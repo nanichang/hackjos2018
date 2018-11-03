@@ -28,7 +28,7 @@ export default class Header extends Component {
             </ul>            
             <ul className="header--topbar-links nav ff--primary float--right">
               <li>
-                <Link to="#" className="btn-link">
+                <Link to="/Login" className="btn-link">
                   <i className="fa mr--8 fa-user-o"></i>
                   <span>My Account</span>
                 </Link>

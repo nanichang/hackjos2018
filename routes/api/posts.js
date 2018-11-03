@@ -8,6 +8,7 @@ const Profile = require('../../models/Profile');
 
 // Load Validation
 const ValidatePostInput = require('../../validation/post');
+import DBURL from '../../config/keys';
 
 // @route   GET api/posts/test
 // @desc    Test Post route
@@ -18,9 +19,55 @@ router.get('/test', (req, res) => res.json({ msg: 'Posts works'}));
 // @desc    Get all Post route
 // @access  Public
 
+app.get('/all-posts', function (req, res) {
+  Signature.find({}).then(eachOne => {
+    res.json(eachOne);
+  })
+})
+
 router.get('/', (req, res) => {
+  let webURL = 'https://ifollowthemoney.mn.co/'
+  let welcomeMsg = `CON Hello and welcome to FTM.
+    Check us our on ${webURL}...
+    Enter your name to continue`
+  let RequestDetails = {
+    name: "",
+    description: "",
+    address: "",
+    phone: "",
+    open: true
+  }
+  let lastData = "";
+  let sessionId = req.body.sessionId;
+  let serviceCode = req.body.serviceCode;
+  let phoneNumber = req.body.phoneNumber;
+  let text = req.body.text;
+  let textValue = text.split('*').length;
+  
   Post.find()
     .sort({date: -1})
+    .then(() => {
+      if(text === ''){
+        message = welcomeMsg
+      }else if(textValue === 1){
+        message = "CON What do you want to do?"
+        RequestDetails.name = text;
+      }else if(textValue === 2){
+        message = "CON View the posts of the day?"
+        RequestDetails.description = text.split('*')[1];
+      }else if(textValue === 3){
+        message = "CON What's your telephone number?"
+        RequestDetails.address = text.split('*')[2];
+      }else if(textValue === 4){
+        message = `CON Would you like to make a post?
+        1. Yes
+        2. No`
+        lastData = text.split('*')[3];
+      }else{
+        message = `END Thanks, with love from follow the money`
+        RequestDetails.telephone = lastData   
+      }
+    })
     .then(posts => res.json(posts))
     .catch(err => res.status(404).json({ nopostsfound: 'No Posts found' }));
 });

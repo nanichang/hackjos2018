@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 
 class Login extends Component {
@@ -20,6 +21,16 @@ class Login extends Component {
       password: this.state.password
     };
     console.log('new user: ', user);
+    axios.post('/api/users/login', user)
+      .then((result) => {
+        console.log('result: ', result.data, window.location);
+        // let user = localStorage.setItem('user', result.data);
+        window.location.replace('/dashboard');
+        
+      }).catch((err) => {
+        console.log('error', err.response.data);
+        this.setState({ errors: err.response.data });
+      });
   };
 
   render() {
